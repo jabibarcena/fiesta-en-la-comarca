@@ -5,64 +5,97 @@
 <title>Fiesta de cumpleaños</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+/* Reset y base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background: #111;
-  color: #eee;
-  font-family: Arial, sans-serif;
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  font-family: 'Poppins', Arial, sans-serif;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  margin: 0;
+  color: #f5f5f5;
   padding: 20px;
+  overflow-x: hidden;
 }
 
+/* Caja principal */
 .box {
-  background: #1e1e1e;
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
+  background: #1c1c1c;
+  border-radius: 20px;
+  padding: 50px 35px;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 0 5px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.7), inset 0 0 10px rgba(255,255,255,0.07);
+}
+
+/* Títulos */
 h1 {
-  font-size: 2em;
+  font-size: 2.4em;
   margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: #ffdd59;
+  text-shadow: 0 0 10px #ffdd59, 0 0 20px #ff6f61;
+  transition: text-shadow 0.3s ease;
 }
 
+/* Mensajes */
 p {
   font-size: 1.2em;
-  margin-bottom: 20px;
+  line-height: 1.5em;
+  margin-bottom: 30px;
+  color: #ddd;
 }
 
+/* Botón principal */
 button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 1.2em;
+  background: linear-gradient(135deg, #ff6f61, #ffdd59);
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  padding: 18px 40px;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #1c1c1c;
   cursor: pointer;
-  background: #e53935;
-  color: white;
-  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 6px 15px rgba(255,111,97,0.5), 0 6px 15px rgba(255,221,89,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
 button:hover {
-  transform: scale(1.05);
-  background: #c62828;
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,111,97,0.6), 0 10px 25px rgba(255,221,89,0.6);
+  background: linear-gradient(135deg, #ff8f7a, #ffe88a);
 }
 
 button:disabled {
   background: #555;
+  color: #ccc;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-@media (max-width: 500px) {
-  h1 { font-size: 1.5em; }
+/* Responsive */
+@media(max-width: 500px){
+  h1 { font-size: 1.8em; }
   p { font-size: 1em; }
-  button { font-size: 1em; padding: 12px 20px; width: 100%; }
+  button { width: 100%; font-size: 1.1em; padding: 15px; }
+}
+
+/* Pantalla troll con animación sutil */
+#pantallaTrolleo {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
 }
 </style>
 </head>
@@ -70,13 +103,13 @@ button:disabled {
 
 <div class="box" id="pantallaBienvenida">
   <h1>🎉 Fiesta de cumpleaños de Piña, Llare y Barce 🎉</h1>
-  <p>Apúntate al evento del año… si tu vida emocional lo permite.</p>
+  <p>Apúntate al evento del año… si tu vida emocional lo permite 😎🍹</p>
   <button id="btnComprobar">QUIERO IR</button>
 </div>
 
 <div class="box" id="pantallaTrolleo" style="display:none;">
-  <h1>Aforo completo</h1>
-  <p id="mensaje">Comprobando disponibilidad emocional...</p>
+  <h1>💀 Aforo completo 💀</h1>
+  <p id="mensaje">Comprobando tu valor como ser humano…</p>
 </div>
 
 <script>
@@ -86,19 +119,17 @@ const pantallaTrolleo = document.getElementById("pantallaTrolleo");
 const mensaje = document.getElementById("mensaje");
 
 btnComprobar.addEventListener("click", () => {
-  // Oculta bienvenida y muestra trolleo
   pantallaBienvenida.style.display = "none";
   pantallaTrolleo.style.display = "block";
 
-  // Mensajes de humor negro aleatorios
   const mensajes = [
-    "Aforo completo. Y no vas a entrar porque eres una mierda.",
-    "Oops… todos los lugares están ocupados por gente más divertida que tú.",
-    "El cupo está lleno y, sinceramente, nadie extrañaría que no vinieras.",
-    "Estabas a tiempo… pero ya se acabó tu oportunidad, fracaso."
+    "Aforo completo. Y no vas a entrar porque eres una mierda",
+    "Oops… todos los lugares están ocupados por gente más divertida que tú",
+    "El cupo está lleno y, sinceramente, nadie extrañaría que no vinieras",
+    "Estabas a tiempo… pero ya se acabó tu oportunidad, fracaso total",
+    "Tu presencia no estaba en la lista… y eso es lo mejor que podía pasar"
   ];
 
-  // Elegir mensaje aleatorio
   mensaje.innerText = mensajes[Math.floor(Math.random() * mensajes.length)];
 });
 </script>
