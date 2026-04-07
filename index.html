@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fiesta de cumpleaños</title>
+<style>
+body {
+  background: #111;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.box {
+  background: #1e1e1e;
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+p {
+  font-size: 1.2em;
+}
+button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #4CAF50;
+  color: white;
+}
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+</style>
+</head>
+<body>
+
+<div class="box" id="pantallaBienvenida">
+  <h1>🎉 Fiesta de cumpleaños de Piña, Llare y Barce 🎉</h1>
+  <p>Apúntate al evento del año</p>
+  <button id="btnComprobar">QUIERO IR</button>
+</div>
+
+<div class="box" id="pantallaTrolleo" style="display:none;">
+  <h1>Aforo completo</h1>
+  <p id="mensaje">Comprobando disponibilidad emocional...</p>
+  
+</div>
+
+<script>
+const btnComprobar = document.getElementById("btnComprobar");
+const pantallaBienvenida = document.getElementById("pantallaBienvenida");
+const pantallaTrolleo = document.getElementById("pantallaTrolleo");
+const btnTrolleo = document.getElementById("btnTrolleo");
+const mensaje = document.getElementById("mensaje");
+
+btnComprobar.addEventListener("click", () => {
+  // Oculta la pantalla de bienvenida y muestra el trolleo
+  pantallaBienvenida.style.display = "none";
+  pantallaTrolleo.style.display = "block";
+
+  // Cambia el mensaje al clásico trolleo
+  mensaje.innerText = "Aforo completo. Y no vas a entrar porque eres una mierda.";
+  btnTrolleo.disabled = true; // desactiva botón
+});
+</script>
+
+</body>
+</html>
